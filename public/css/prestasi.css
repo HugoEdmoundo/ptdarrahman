@@ -1,0 +1,507 @@
+/* ================ VARIABLES ================ */
+:root {
+  --primary: #1E8449;   /* Hijau Segar (utama banget) */
+  --secondary: #145A32; /* Hijau Gelap (navbar/footer) */
+  --accent: #F6A21E;    /* Oranye aksen */
+  --light: #FFFFFF;     /* Putih */
+  --dark: #1C1C1C;      /* Hitam Abu */
+  --success: #27AE60;   /* Bootstrap Success style */
+  --info: #2ECC71;      /* Hijau Muda (hover/link) */
+  --warning: #f39c12;   /* Kuning/Oranye */
+  --danger: #e74c3c;    /* Merah */
+  --white: #ffffff;
+  --black: #000000;
+  --gray: #95a5a6;
+  --dark-gray: #7f8c8d;
+  --light-gray: #bdc3c7;
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Montserrat', sans-serif;
+  --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+  --transition: all 0.3s ease;
+  --border-radius: 0.375rem;
+  --border-radius-lg: 0.5rem;
+  --border-radius-xl: 1rem;
+  --toska-1: #1E8449;   /* Hijau utama */
+  --toska-2: #2ECC71;   /* Hijau muda pendukung */
+  --deep: #0B3D2E;      /* Hijau sangat gelap */
+  --muted: #6b7280;
+}
+
+
+/* ================ BASE STYLES ================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  color: var(--dark);
+  line-height: 1.6;
+  background-color: var(--light);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--secondary);
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--info);
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+.btn {
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #159b8c;
+  border-color: #159b8c;
+  color: white;
+}
+
+.btn-outline-light:hover {
+  color: var(--dark);
+}
+
+.btn-link {
+  color: var(--primary);
+}
+
+.btn-link:hover {
+  color: var(--accent);
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.text-warning {
+  color: var(--warning) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.bg-light {
+  background-color: var(--light) !important;
+}
+
+.bg-dark {
+  background-color: var(--dark) !important;
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(135deg, var(--primary), #4a6491);
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, var(--success), #2ecc71);
+}
+
+.bg-gradient-warning {
+  background: linear-gradient(135deg, var(--warning), #f1c40f);
+}
+
+/* ================ UTILITY CLASSES ================ */
+.rounded-4 {
+  border-radius: var(--border-radius-lg);
+}
+
+.rounded-5 {
+  border-radius: var(--border-radius-xl);
+}
+
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.shadow {
+  box-shadow: var(--shadow);
+}
+
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+.z-index-1 {
+  z-index: 1;
+}
+
+.z-index-2 {
+  z-index: 2;
+}
+
+.z-index-3 {
+  z-index: 3;
+}
+
+/* ================ COMPONENTS ================ */
+
+        /* ================ HERO SECTION ================ */
+        .hero-section {
+            background: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        /* ================ PRESTASI SECTION ================ */
+        .prestasi-section {
+            background-color: var(--light-green);
+            position: relative;
+            padding-top: 5%;
+        }
+
+        .prestasi-card {
+            background: white;
+            border-radius: var(--border-radius-xl);
+            overflow: hidden;
+            transition: var(--transition);
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .prestasi-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .prestasi-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .prestasi-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .prestasi-card:hover .prestasi-img img {
+            transform: scale(1.1);
+        }
+
+        .prestasi-badge {
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .prestasi-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ================ JOURNEY SECTION - DESAIN BARU ================ */
+        .journey-section {
+            position: relative;
+            padding: 100px 0;
+            background: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        .journey-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(20, 90, 50, 0.9);
+        }
+
+        .journey-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .journey-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .journey-cards {
+            display: flex;
+            overflow-x: auto;
+            padding: 30px 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) transparent;
+        }
+
+        .journey-cards::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .journey-cards::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 8px;
+        }
+
+        .journey-card {
+            flex: 0 0 auto;
+            width: 320px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-right: 30px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .journey-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .journey-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+
+        .journey-year {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 15px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .journey-card h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .journey-card p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+
+        .journey-icon {
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.2);
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        /* ================ QUOTE SECTION ================ */
+        .quote-section {
+            background: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30, 132, 73, 0.85);
+        }
+
+        .quote-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 5%;
+        }
+
+        .quote-icon {
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+        }
+
+        /* ================ ACHIEVEMENT SHOWCASE ================ */
+        .showcase-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .showcase-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .trophy-case {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .trophy-item {
+            text-align: center;
+            width: 180px;
+            transition: var(--transition);
+        }
+
+        .trophy-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .trophy-icon {
+            font-size: 4rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .trophy-item:hover .trophy-icon {
+            color: var(--primary);
+            transform: rotate(10deg);
+        }
+
+        .trophy-count {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        /* ================ RESPONSIVE ================ */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .journey-card {
+                width: 280px;
+            }
+            
+            .trophy-item {
+                width: 140px;
+            }
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+        }

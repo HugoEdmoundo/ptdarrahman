@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Santri - Pesantren Tahfidz Qur'an dan Digital Arrahman</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <!-- Custom CSS -->
+    <style>
+        /* ================ VARIABLES ================ */
+        :root {
+          --primary: #1E8449;   /* Hijau Segar (utama banget) */
+          --secondary: #145A32; /* Hijau Gelap (navbar/footer) */
+          --accent: #F6A21E;    /* Oranye aksen */
+          --light: #FFFFFF;     /* Putih */
+          --dark: #1C1C1C;      /* Hitam Abu */
+          --success: #27AE60;   /* Bootstrap Success style */
+          --info: #2ECC71;      /* Hijau Muda (hover/link) */
+          --warning: #f39c12;   /* Kuning/Oranye */
+          --danger: #e74c3c;    /* Merah */
+          --white: #ffffff;
+          --black: #000000;
+          --gray: #95a5a6;
+          --dark-gray: #7f8c8d;
+          --light-gray: #bdc3c7;
+          --font-primary: 'Poppins', sans-serif;
+          --font-secondary: 'Montserrat', sans-serif;
+          --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+          --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+          --transition: all 0.3s ease;
+          --border-radius: 0.375rem;
+          --border-radius-lg: 0.5rem;
+          --border-radius-xl: 1rem;
+          --toska-1: #1E8449;   /* Hijau utama */
+          --toska-2: #2ECC71;   /* Hijau muda pendukung */
+          --deep: #0B3D2E;      /* Hijau sangat gelap */
+          --muted: #6b7280;
+        }
+
+        /* ================ BASE STYLES ================ */
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        html {
+          scroll-behavior: smooth;
+        }
+
+        body {
+          font-family: var(--font-primary);
+          color: var(--dark);
+          line-height: 1.6;
+          background-color: var(--light);
+          overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+          font-family: var(--font-secondary);
+          font-weight: 700;
+          line-height: 1.2;
+          margin-bottom: 1rem;
+        }
+
+        a {
+          text-decoration: none;
+          color: var(--secondary);
+          transition: var(--transition);
+        }
+
+        a:hover {
+          color: var(--info);
+          text-decoration: none;
+        }
+
+        img {
+          max-width: 100%;
+          height: auto;
+          vertical-align: middle;
+        }
+
+        ul, ol {
+          padding-left: 1.5rem;
+        }
+
+        .btn {
+          font-weight: 500;
+          padding: 0.5rem 1.25rem;
+          border-radius: var(--border-radius);
+          transition: var(--transition);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .btn-lg {
+          padding: 0.75rem 1.5rem;
+          font-size: 1.1rem;
+        }
+
+        .btn-primary {
+          background-color: var(--primary);
+          border-color: var(--primary);
+          color: white;
+        }
+
+        .btn-primary:hover {
+          background-color: var(--secondary);
+          border-color: var(--secondary);
+          color: white;
+        }
+
+        .btn-outline-primary {
+          color: var(--primary);
+          border-color: var(--primary);
+        }
+
+        .btn-outline-primary:hover {
+          background-color: var(--primary);
+          color: white;
+        }
+
+        .btn-outline-light:hover {
+          color: var(--dark);
+        }
+
+        .btn-link {
+          color: var(--primary);
+        }
+
+        .btn-link:hover {
+          color: var(--accent);
+        }
+
+        .text-primary {
+          color: var(--primary) !important;
+        }
+
+        .text-warning {
+          color: var(--warning) !important;
+        }
+
+        .bg-primary {
+          background-color: var(--primary) !important;
+        }
+
+        .bg-light {
+          background-color: var(--light) !important;
+        }
+
+        .bg-dark {
+          background-color: var(--dark) !important;
+        }
+
+        .bg-gradient-primary {
+          background: linear-gradient(135deg, var(--primary), #4a6491);
+        }
+
+        .bg-gradient-success {
+          background: linear-gradient(135deg, var(--success), #2ecc71);
+        }
+
+        .bg-gradient-warning {
+          background: linear-gradient(135deg, var(--warning), #f1c40f);
+        }
+
+        /* ================ UTILITY CLASSES ================ */
+        .rounded-4 {
+          border-radius: var(--border-radius-lg);
+        }
+
+        .rounded-5 {
+          border-radius: var(--border-radius-xl);
+        }
+
+        .shadow-sm {
+          box-shadow: var(--shadow-sm);
+        }
+
+        .shadow {
+          box-shadow: var(--shadow);
+        }
+
+        .shadow-lg {
+          box-shadow: var(--shadow-lg);
+        }
+
+        .object-fit-cover {
+          object-fit: cover;
+        }
+
+        .min-vh-100 {
+          min-height: 100vh;
+        }
+
+        .z-index-1 {
+          z-index: 1;
+        }
+
+        .z-index-2 {
+          z-index: 2;
+        }
+
+        .z-index-3 {
+          z-index: 3;
+        }
+
+        /* ================ CUSTOM STYLES ================ */
+        .page-header {
+          background: linear-gradient(rgba(30, 132, 73, 0.9), rgba(20, 90, 50, 0.9)), url('https://images.unsplash.com/photo-1581368135153-a506cf13531c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+          background-size: cover;
+          background-position: center;
+          padding: 5rem 0;
+          color: white;
+        }
+
+        .card-santri {
+          transition: var(--transition);
+          border: none;
+          box-shadow: var(--shadow-sm);
+        }
+
+        .card-santri:hover {
+          transform: translateY(-5px);
+          box-shadow: var(--shadow);
+        }
+
+        .card-santri .progress {
+          height: 8px;
+        }
+
+        .badge-status {
+          padding: 0.5rem 1rem;
+          border-radius: 50px;
+          font-weight: 500;
+        }
+
+        .table th {
+          background-color: var(--primary);
+          color: white;
+          border-color: var(--secondary);
+        }
+
+        .pagination .page-item.active .page-link {
+          background-color: var(--primary);
+          border-color: var(--primary);
+        }
+
+        .pagination .page-link {
+          color: var(--primary);
+        }
+
+        .pagination .page-link:hover {
+          color: var(--secondary);
+        }
+
+        .filter-section {
+          background-color: #f8f9fa;
+          border-radius: var(--border-radius-lg);
+          padding: 1.5rem;
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+          border-radius: var(--border-radius);
+          border: 1px solid var(--light-gray);
+          padding: 0.375rem 0.75rem;
+        }
+
+        .dataTables_wrapper .dataTables_length select {
+          border-radius: var(--border-radius);
+          border: 1px solid var(--light-gray);
+          padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+          padding: 0.375rem 0.75rem;
+          border-radius: var(--border-radius);
+          border: 1px solid transparent;
+          color: var(--primary) !important;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+          background: var(--primary) !important;
+          color: white !important;
+          border: 1px solid var(--primary);
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+          background: var(--secondary) !important;
+          color: white !important;
+          border: 1px solid var(--secondary);
+        }
+
+        .santri-img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .action-buttons .btn {
+          margin-right: 5px;
+        }
+
+        .detail-modal .modal-header {
+          background-color: var(--primary);
+          color: white;
+        }
+
+        .progress-bar {
+          transition: width 1s ease-in-out;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar">
+
+    <!-- Header -->
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--secondary);">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="https://res.cloudinary.com/dunynusuh/image/upload/v1755771459/Logo-Ar-Rahman_fm4mgg.png" alt="Logo" height="40" class="d-inline-block align-text-top me-2">
+                    Pesantren Arrahman
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/data-santri">Data Santri</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/program">Program</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/galeri">Galeri</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/kontak">Kontak</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Data Santri</h1>
+            <p class="lead">Profil santri Pesantren Tahfidz Qur'an dan Digital Arrahman</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a href="/">Beranda</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Data Santri</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-5" style="margin-top: 80px;">
+        <div class="container">
+            <!-- Filter Section -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="filter-section mb-4">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label for="filterKelas" class="form-label">Kelas</label>
+                                <select class="form-select" id="filterKelas">
+                                    <option value="">Semua Kelas</option>
+                                    <option value="7">Kelas 7</option>
+                                    <option value="8">Kelas 8</option>
+                                    <option value="9">Kelas 9</option>
+                                    <option value="10">Kelas 10</option>
+                                    <option value="11">Kelas 11</option>
+                                    <option value="12">Kelas 12</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="filterTahun" class="form-label">Tahun Masuk</label>
+                                <select class="form-select" id="filterTahun">
+                                    <option value="">Semua Tahun</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2020">2020</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="filterStatus" class="form-label">Status</label>
+                                <select class="form-select" id="filterStatus">
+                                    <option value="">Semua Status</option>
+                                    <option value="aktif">Aktif</option>
+                                    <option value="alumni">Alumni</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="searchInput" class="form-label">Cari Santri</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Nama santri...">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Santri Table -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">Daftar Santri</h5>
+                            <div>
+                                <button class="btn btn-light btn-sm me-2">
+                                    <i class="fas fa-download me-1"></i> Export
+                                </button>
+                                <button class="btn btn-light btn-sm">
+                                    <i class="fas fa-plus me-1"></i> Tambah
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="tabelSantri" class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Foto</th>
+                                            <th>Nama Santri</th>
+                                            <th>Kelas</th>
+                                            <th>Tahun Masuk</th>
+                                            <th>Hafalan</th>
+                                            <th>Progress</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="santri-img" alt="Ahmad Fauzi"></td>
+                                            <td>Ahmad Fauzi</td>
+                                            <td>10 IPA</td>
+                                            <td>2022</td>
+                                            <td>5 Juz</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <small>50%</small>
+                                            </td>
+                                            <td><span class="badge bg-success badge-status">Aktif</span></td>
+                                            <td class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#detailSantri">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="santri-img" alt="Siti Rahmah"></td>
+                                            <td>Siti Rahmah</td>
+                                            <td>11 IPS</td>
+                                            <td>2021</td>
+                                            <td>12 Juz</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <small>80%</small>
+                                            </td>
+                                            <td><span class="badge bg-success badge-status">Aktif</span></td>
+                                            <td class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#detailSantri">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td><img src="https://images.unsplash.com/photo-1564564244660-5d73c057f2d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="santri-img" alt="Muhammad Rizky"></td>
+                                            <td>Muhammad Rizky</td>
+                                            <td>12 IPA</td>
+                                            <td>2020</td>
+                                            <td>30 Juz</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <small>100%</small>
+                                            </td>
+                                            <td><span class="badge bg-warning text-dark badge-status">Alumni</span></td>
+                                            <td class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#detailSantri">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="santri-img" alt="Nur Aisyah"></td>
+                                            <td>Nur Aisyah</td>
+                                            <td>9</td>
+                                            <td>2023</td>
+                                            <td>2 Juz</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <small>20%</small>
+                                            </td>
+                                            <td><span class="badge bg-success badge-status">Aktif</span></td>
+                                            <td class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#detailSantri">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td><img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="santri-img" alt="Abdullah Rahman"></td>
+                                            <td>Abdullah Rahman</td>
+                                            <td>8</td>
+                                            <td>2023</td>
+                                            <td>3 Juz</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <small>30%</small>
+                                            </td>
+                                            <td><span class="badge bg-success badge-status">Aktif</span></td>
+                                            <td class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#detailSantri">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="santri-img" alt="Siti Aisyah"></td>
+                                            <td>Siti Aisyah</td>
+                                            <td>11 IPA</td>
+                                            <td>2021</td>
+                                            <td>15 Juz</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <small>75%</small>
+                                            </td>
+                                            <td><span class="badge bg-success badge-status">Aktif</span></td>
+                                            <td class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#detailSantri">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td><img src="https://images.unsplash.com/photo-1564564244660-5d73c057f2d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="santri-img" alt="Rudi Hermawan"></td>
+                                            <td>Rudi Hermawan</td>
+                                            <td>10 IPS</td>
+                                            <td>2022</td>
+                                            <td>8 Juz</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <small>40%</small>
+                                            </td>
+                                            <td><span class="badge bg-success badge-status">Aktif</span></td>
+                                            <td class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#detailSantri">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="santri-img" alt="Dewi Lestari"></td>
+                                            <td>Dewi Lestari</td>
+                                            <td>12 IPS</td>
+                                            <td>2020</td>
+                                            <td>25 Juz</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 83%" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                                <small>83%</small>
+                                            </td>
+                                            <td><span class="badge bg-warning text-dark badge-status">Alumni</span></td>
+                                            <td class="action-buttons">
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#detailSantri">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Detail Santri Modal -->
+    <div class="modal fade detail-modal" id="detailSantri" tabindex="-1" aria-labelledby="detailSantriLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailSantriLabel">Detail Santri</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" class="img-fluid rounded-circle mb-3" alt="Ahmad Fauzi">
+                            <h4>Ahmad Fauzi</h4>
+                            <p class="text-muted">10 IPA</p>
+                            <span class="badge bg-success badge-status">Aktif</span>
+                        </div>
+                        <div class="col-md-8">
+                            <h5>Informasi Pribadi</h5>
+                            <div class="row mb-3">
+                                <div class="col-sm-6">
+                                    <p><strong>Tempat Lahir:</strong> Bandung</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p><strong>Tanggal Lahir:</strong> 15 April 2006</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p><strong>Jenis Kelamin:</strong> Laki-laki</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p><strong>Tahun Masuk:</strong> 2022</p>
+                                </div>
+                            </div>
+                            
+                            <h5>Progress Hafalan</h5>
+                            <div class="mb-3">
+                                <p><strong>Total Hafalan:</strong> 5 Juz</p>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                                </div>
+                                <p><strong>Target:</strong> 10 Juz</p>
+                            </div>
+                            
+                            <h5>Kontak</h5>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p><strong>Nama Orang Tua:</strong> Budi Santoso</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p><strong>Telepon:</strong> 0812-3456-7890</p>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p><strong>Alamat:</strong> Jl. Merdeka No. 123, Bandung</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary">Edit Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-light py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <img src="https://res.cloudinary.com/dunynusuh/image/upload/v1755771459/Logo-Ar-Rahman_fm4mgg.png" alt="Logo" height="40" class="mb-3">
+                    <p>Pesantren Tahfidz Qur'an dan Digital Arrahman merupakan lembaga pendidikan yang mengintegrasikan tahfidz Qur'an dengan skill digital.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5>Menu</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Beranda</a></li>
+                        <li><a href="#" class="text-light">Tentang</a></li>
+                        <li><a href="#" class="text-light">Program</a></li>
+                        <li><a href="#" class="text-light">Galeri</a></li>
+                        <li><a href="#" class="text-light">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <h5>Program</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Tahfidz Qur'an</a></li>
+                        <li><a href="#" class="text-light">Digital Marketing</a></li>
+                        <li><a href="#" class="text-light">Programming</a></li>
+                        <li><a href="#" class="text-light">Design Grafis</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <h5>Kontak</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Jl. Pendidikan No. 123, Bandung</li>
+                        <li><i class="fas fa-phone me-2"></i> (022) 1234567</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@arrahman.sch.id</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <p class="mb-0">&copy; 2023 Pesantren Arrahman. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-light me-3"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-light"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        $(document).ready(function() {
+            // Inisialisasi DataTables
+            $('#tabelSantri').DataTable({
+                language: {
+                    search: "Cari:",
+                    lengthMenu: "Tampilkan _MENU_ data per halaman",
+                    info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                    infoEmpty: "Menampilkan 0 sampai 0 dari 0 data",
+                    infoFiltered: "(disaring dari _MAX_ total data)",
+                    paginate: {
+                        first: "Pertama",
+                        last: "Terakhir",
+                        next: "Selanjutnya",
+                        previous: "Sebelumnya"
+                    }
+                },
+                responsive: true
+            });
+
+            // Filter functionality
+            $('#filterKelas, #filterTahun, #filterStatus').on('change', function() {
+                const kelas = $('#filterKelas').val();
+                const tahun = $('#filterTahun').val();
+                const status = $('#filterStatus').val();
+                
+                // Simulasi filter
+                $('#tabelSantri tbody tr').each(function() {
+                    let show = true;
+                    const row = $(this);
+                    
+                    if (kelas && row.find('td:eq(3)').text().indexOf(kelas) === -1) {
+                        show = false;
+                    }
+                    
+                    if (tahun && row.find('td:eq(4)').text() !== tahun) {
+                        show = false;
+                    }
+                    
+                    if (status) {
+                        const statusText = status === 'aktif' ? 'Aktif' : 'Alumni';
+                        if (row.find('td:eq(7)').text().indexOf(statusText) === -1) {
+                            show = false;
+                        }
+                    }
+                    
+                    if (show) {
+                        row.show();
+                    } else {
+                        row.hide();
+                    }
+                });
+            });
+
+            // Search functionality
+            $('#searchInput').on('keyup', function() {
+                const value = $(this).val().toLowerCase();
+                $('#tabelSantri tbody tr').filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+
+            // Back to top button
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('#backToTop').fadeIn();
+                } else {
+                    $('#backToTop').fadeOut();
+                }
+            });
+
+            $('#backToTop').click(function() {
+                $('html, body').animate({ scrollTop: 0 }, 300);
+                return false;
+            });
+
+            // Animate progress bars on modal show
+            $('#detailSantri').on('shown.bs.modal', function () {
+                $('.progress-bar').each(function() {
+                    $(this).css('width', $(this).attr('aria-valuenow') + '%');
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,601 @@
+/* ================ VARIABLES ================ */
+:root {
+  --primary: #1E8449;   /* Hijau Segar (utama banget) */
+  --secondary: #145A32; /* Hijau Gelap (navbar/footer) */
+  --accent: #F6A21E;    /* Oranye aksen */
+  --light: #FFFFFF;     /* Putih */
+  --dark: #1C1C1C;      /* Hitam Abu */
+  --success: #27AE60;   /* Bootstrap Success style */
+  --info: #2ECC71;      /* Hijau Muda (hover/link) */
+  --warning: #f39c12;   /* Kuning/Oranye */
+  --danger: #e74c3c;    /* Merah */
+  --white: #ffffff;
+  --black: #000000;
+  --gray: #95a5a6;
+  --dark-gray: #7f8c8d;
+  --light-gray: #bdc3c7;
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Montserrat', sans-serif;
+  --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+  --transition: all 0.3s ease;
+  --border-radius: 0.375rem;
+  --border-radius-lg: 0.5rem;
+  --border-radius-xl: 1rem;
+  --toska-1: #1E8449;   /* Hijau utama */
+  --toska-2: #2ECC71;   /* Hijau muda pendukung */
+  --deep: #0B3D2E;      /* Hijau sangat gelap */
+  --muted: #6b7280;
+}
+
+
+/* ================ BASE STYLES ================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  color: var(--dark);
+  line-height: 1.6;
+  background-color: var(--light);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--secondary);
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--info);
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+.btn {
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #159b8c;
+  border-color: #159b8c;
+  color: white;
+}
+
+.btn-outline-light:hover {
+  color: var(--dark);
+}
+
+.btn-link {
+  color: var(--primary);
+}
+
+.btn-link:hover {
+  color: var(--accent);
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.text-warning {
+  color: var(--warning) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.bg-light {
+  background-color: var(--light) !important;
+}
+
+.bg-dark {
+  background-color: var(--dark) !important;
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(135deg, var(--primary), #4a6491);
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, var(--success), #2ecc71);
+}
+
+.bg-gradient-warning {
+  background: linear-gradient(135deg, var(--warning), #f1c40f);
+}
+
+/* ================ UTILITY CLASSES ================ */
+.rounded-4 {
+  border-radius: var(--border-radius-lg);
+}
+
+.rounded-5 {
+  border-radius: var(--border-radius-xl);
+}
+
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.shadow {
+  box-shadow: var(--shadow);
+}
+
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+.z-index-1 {
+  z-index: 1;
+}
+
+.z-index-2 {
+  z-index: 2;
+}
+
+.z-index-3 {
+  z-index: 3;
+}
+
+/* ================ COMPONENTS ================ */
+
+/* Konten */
+
+.page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .teacher-profile {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 5rem;
+            position: relative;
+            background: white;
+            border-radius: var(--border-radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .teacher-profile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+
+        .teacher-profile:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .profile-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .profile-image {
+            flex: 0 0 320px;
+            height: 380px;
+            border-radius: var(--border-radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .teacher-profile:hover .profile-image {
+            transform: rotate(-2deg);
+        }
+
+        .teacher-profile:hover .profile-image img {
+            transform: scale(1.08);
+        }
+
+        .profile-details {
+            flex: 1;
+            min-width: 300px;
+            padding: 1rem 0;
+        }
+
+        .teacher-name {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .teacher-name::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .teacher-bio {
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        .teacher-roles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px dashed var(--light-gray);
+        }
+
+        .role-badge {
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .role-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: var(--transition);
+        }
+
+        .role-badge:hover::before {
+            left: 100%;
+        }
+
+        .role-badge:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow);
+        }
+
+        .role-admin {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .role-teacher {
+            background: linear-gradient(135deg, var(--accent), #e67e22);
+            color: white;
+        }
+
+        .role-support {
+            background: linear-gradient(135deg, var(--info), #3498db);
+            color: white;
+        }
+
+        .role-icon {
+            font-size: 1.1rem;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .shape-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .shape-triangle {
+            width: 0;
+            height: 0;
+            border-left: 70px solid transparent;
+            border-right: 70px solid transparent;
+            border-bottom: 120px solid var(--accent);
+        }
+
+        .shape-square {
+            width: 80px;
+            height: 80px;
+            background: var(--info);
+        }
+
+        /* Animation for shapes */
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        .shape {
+            animation: float 10s ease-in-out infinite;
+        }
+
+        /* Alternating layout for teachers */
+        .teacher-profile:nth-child(even) .profile-content {
+            flex-direction: row-reverse;
+        }
+
+        .teacher-profile:nth-child(even) .teacher-name::after {
+            left: auto;
+            right: 0;
+        }
+
+        /* Contact info */
+        .teacher-contact {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-itm {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--muted);
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            background: #f8f9fa;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+
+        .contact-itm:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .contact-itm:hover .contact-icon {
+            color: white;
+        }
+
+        .contact-icon {
+            color: var(--primary);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        /* Decorative elements */
+        .profile-decoration {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 4px solid var(--primary);
+            border-radius: var(--border-radius-xl);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        /* Background pattern */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 5% 10%, rgba(30, 132, 73, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 95% 20%, rgba(246, 162, 30, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 50% 80%, rgba(46, 204, 113, 0.05) 0%, transparent 20%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .profile-image {
+                flex: 0 0 280px;
+                height: 340px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-container {
+                padding: 1.5rem;
+            }
+            
+            .profile-content {
+                flex-direction: column;
+            }
+            
+            .teacher-profile:nth-child(even) .profile-content {
+                flex-direction: column;
+            }
+            
+            .profile-image {
+                width: 100%;
+                height: 350px;
+            }
+            
+            .teacher-name {
+                font-size: 1.9rem;
+            }
+            
+            .teacher-contact {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .contact-item {
+                width: fit-content;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-title h1 {
+                font-size: 2.2rem;
+            }
+            
+            .page-title p {
+                font-size: 1rem;
+            }
+            
+            .teacher-profile {
+                padding: 1.5rem;
+            }
+            
+            .profile-image {
+                height: 300px;
+            }
+            
+            .teacher-name {
+                font-size: 1.7rem;
+            }
+            
+            .teacher-bio {
+                font-size: 1rem;
+            }
+            
+            .role-badge {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Additional animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .teacher-profile {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .teacher-profile:nth-child(1) { animation-delay: 0.1s; }
+        .teacher-profile:nth-child(2) { animation-delay: 0.2s; }
+        .teacher-profile:nth-child(3) { animation-delay: 0.3s; }
+        .teacher-profile:nth-child(4) { animation-delay: 0.4s; }
+        .teacher-profile:nth-child(5) { animation-delay: 0.5s; }
+        .teacher-profile:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Hover effect for the entire profile */
+        .teacher-profile:hover::before {
+            width: 8px;
+            background: linear-gradient(to bottom, var(--accent), var(--primary));
+        }
+
+        /* Special highlight for first profile (Kepala Sekolah) */
+        .teacher-profile:first-child {
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+
+        .teacher-profile:first-child::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--accent), var(--primary));
+            border-radius: var(--border-radius-xl);
+            z-index: -1;
+            animation: borderGlow 3s infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+

@@ -1,0 +1,665 @@
+        /* ================ VARIABLES ================ */
+        :root {
+          --primary: #1E8449;   /* Hijau Segar (utama banget) */
+          --secondary: #145A32; /* Hijau Gelap (navbar/footer) */
+          --accent: #F6A21E;    /* Oranye aksen */
+          --light: #FFFFFF;     /* Putih */
+          --dark: #1C1C1C;      /* Hitam Abu */
+          --success: #27AE60;   /* Bootstrap Success style */
+          --info: #2ECC71;      /* Hijau Muda (hover/link) */
+          --warning: #f39c12;   /* Kuning/Oranye */
+          --danger: #e74c3c;    /* Merah */
+          --white: #ffffff;
+          --black: #000000;
+          --gray: #95a5a6;
+          --dark-gray: #7f8c8d;
+          --light-gray: #bdc3c7;
+          --font-primary: 'Poppins', sans-serif;
+          --font-secondary: 'Montserrat', sans-serif;
+          --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+          --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+          --transition: all 0.3s ease;
+          --border-radius: 0.375rem;
+          --border-radius-lg: 0.5rem;
+          --border-radius-xl: 1rem;
+          --toska-1: #1E8449;   /* Hijau utama */
+          --toska-2: #2ECC71;   /* Hijau muda pendukung */
+          --deep: #0B3D2E;      /* Hijau sangat gelap */
+          --muted: #6b7280;
+        }
+
+        /* ================ BASE STYLES ================ */
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        html {
+          scroll-behavior: smooth;
+        }
+
+        body {
+          font-family: var(--font-primary);
+          color: var(--dark);
+          line-height: 1.6;
+          background-color: var(--light);
+          overflow-x: hidden;
+          padding: 0;
+          margin: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+          font-family: var(--font-secondary);
+          font-weight: 700;
+          line-height: 1.2;
+          margin-bottom: 1rem;
+        }
+
+        a {
+          text-decoration: none;
+          color: var(--secondary);
+          transition: var(--transition);
+        }
+
+        a:hover {
+          color: var(--info);
+          text-decoration: none;
+        }
+
+        img {
+          max-width: 100%;
+          height: auto;
+          vertical-align: middle;
+        }
+
+        ul, ol {
+          padding-left: 1.5rem;
+        }
+
+        .btn {
+          font-weight: 500;
+          padding: 0.5rem 1.25rem;
+          border-radius: var(--border-radius);
+          transition: var(--transition);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .btn-lg {
+          padding: 0.75rem 1.5rem;
+          font-size: 1.1rem;
+        }
+
+        .btn-primary {
+          background-color: var(--primary);
+          border-color: var(--primary);
+          color: white;
+        }
+
+        .btn-primary:hover {
+          background-color: #159b8c;
+          border-color: #159b8c;
+          color: white;
+        }
+
+        .btn-outline-light:hover {
+          color: var(--dark);
+        }
+
+        .btn-link {
+          color: var(--primary);
+        }
+
+        .btn-link:hover {
+          color: var(--accent);
+        }
+
+        .text-primary {
+          color: var(--primary) !important;
+        }
+
+        .text-warning {
+          color: var(--warning) !important;
+        }
+
+        .bg-primary {
+          background-color: var(--primary) !important;
+        }
+
+        .bg-light {
+          background-color: var(--light) !important;
+        }
+
+        .bg-dark {
+          background-color: var(--dark) !important;
+        }
+
+        .bg-gradient-primary {
+          background: linear-gradient(135deg, var(--primary), #4a6491);
+        }
+
+        .bg-gradient-success {
+          background: linear-gradient(135deg, var(--success), #2ecc71);
+        }
+
+        .bg-gradient-warning {
+          background: linear-gradient(135deg, var(--warning), #f1c40f);
+        }
+
+        /* ================ UTILITY CLASSES ================ */
+        .rounded-4 {
+          border-radius: var(--border-radius-lg);
+        }
+
+        .rounded-5 {
+          border-radius: var(--border-radius-xl);
+        }
+
+        .shadow-sm {
+          box-shadow: var(--shadow-sm);
+        }
+
+        .shadow {
+          box-shadow: var(--shadow);
+        }
+
+        .shadow-lg {
+          box-shadow: var(--shadow-lg);
+        }
+
+        .object-fit-cover {
+          object-fit: cover;
+        }
+
+        .min-vh-100 {
+          min-height: 100vh;
+        }
+
+        .z-index-1 {
+          z-index: 1;
+        }
+
+        .z-index-2 {
+          z-index: 2;
+        }
+
+        .z-index-3 {
+          z-index: 3;
+        }
+
+        /* ================ KALENDER STYLES ================ */
+        .academic-calendar {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .calendar-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .calendar-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .calendar-header h1:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            border-radius: 2px;
+        }
+
+        .calendar-header p {
+            color: var(--muted);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .semester-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .semester-tab {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border-radius: var(--border-radius-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid transparent;
+        }
+
+        .semester-tab.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .semester-tab:not(.active):hover {
+            border-color: var(--primary);
+        }
+
+        .calendar-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .calendar-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Month Selector Styles */
+        .month-selector {
+            background: var(--light);
+            border-radius: var(--border-radius-xl);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .month-selector h2 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid var(--info);
+            padding-bottom: 0.5rem;
+        }
+
+        .month-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .month-item {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .month-item:hover {
+            background-color: rgba(46, 204, 113, 0.1);
+        }
+
+        .month-item.active {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .month-item.active .month-events-count {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+
+        .month-name {
+            font-weight: 500;
+        }
+
+        .month-events-count {
+            background-color: var(--info);
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 1rem;
+            min-width: 28px;
+            text-align: center;
+        }
+
+        /* Calendar View Styles */
+        .calendar-view {
+            background: var(--light);
+            border-radius: var(--border-radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .calendar-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .current-month-display {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+            font-weight: 500;
+            padding: 0.75rem 0;
+        }
+
+        .weekday {
+            padding: 0.5rem;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+
+        .day {
+            aspect-ratio: 1;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .day:hover {
+            border-color: var(--info);
+        }
+
+        .day-number {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .day.other-month {
+            opacity: 0.4;
+        }
+
+        .day.today {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .day.has-event:after {
+            content: '';
+            position: absolute;
+            bottom: 0.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: var(--info);
+            border-radius: 50%;
+        }
+
+        .day.event-important:after {
+            background-color: var(--warning);
+            width: 8px;
+            height: 8px;
+        }
+
+        .day.event-critical:after {
+            background-color: var(--danger);
+            width: 8px;
+            height: 8px;
+        }
+
+        .event-indicators {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2px;
+            margin-top: 4px;
+            width: 100%;
+        }
+
+        .event-indicator {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            font-size: 0;
+        }
+
+        .event-indicator.academic {
+            background-color: var(--primary);
+        }
+
+        .event-indicator.exam {
+            background-color: var(--danger);
+        }
+
+        .event-indicator.holiday {
+            background-color: var(--warning);
+        }
+
+        .event-indicator.other {
+            background-color: var(--info);
+        }
+
+        /* Events Panel Styles */
+        .events-panel {
+            margin-top: 2rem;
+            background: var(--light);
+            border-radius: var(--border-radius-xl);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .events-panel h2 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--info);
+        }
+
+        .events-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .event-item {
+            padding: 1.25rem;
+            border-radius: var(--border-radius-lg);
+            margin-bottom: 1rem;
+            background: white;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .event-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .event-item.critical {
+            border-left-color: var(--danger);
+        }
+
+        .event-item.important {
+            border-left-color: var(--warning);
+        }
+
+        .event-date {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .event-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .event-desc {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .event-type {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .event-type.academic {
+            background-color: rgba(30, 132, 73, 0.1);
+            color: var(--primary);
+        }
+
+        .event-type.exam {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--danger);
+        }
+
+        .event-type.holiday {
+            background-color: rgba(243, 156, 18, 0.1);
+            color: var(--warning);
+        }
+
+        .event-type.other {
+            background-color: rgba(46, 204, 113, 0.1);
+            color: var(--info);
+        }
+
+        .no-events {
+            text-align: center;
+            padding: 2rem;
+            color: var(--muted);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Filter Styles */
+        .event-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            border: 1px solid var(--info);
+            background: white;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--info);
+            color: white;
+        }
+
+        /* Legend Styles */
+        .calendar-legend {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-color.academic {
+            background-color: var(--primary);
+        }
+
+        .legend-color.exam {
+            background-color: var(--danger);
+        }
+
+        .legend-color.holiday {
+            background-color: var(--warning);
+        }
+
+        .legend-color.other {
+            background-color: var(--info);
+        }
+    
