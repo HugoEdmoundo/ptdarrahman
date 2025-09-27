@@ -8,24 +8,32 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 class RouteServiceProvider extends ServiceProvider
 {
     /**
-     * The path to your application's "home" route.
-     *
-     * Setelah login, user akan diarahkan ke sini.
+     * Path home untuk redirect default login.
      */
     public const HOME = '/dashboard';
 
     /**
-     * Daftarkan route aplikasi.
+     * Map route web dan api.
      */
     public function boot(): void
     {
+        $this->configureRateLimiting();
+
         $this->routes(function () {
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
 
-            Route::middleware('api')
-                ->prefix('api')
+            Route::prefix('api')
+                ->middleware('api')
                 ->group(base_path('routes/api.php'));
         });
+    }
+
+    /**
+     * Rate limiting (optional, default Breeze).
+     */
+    protected function configureRateLimiting(): void
+    {
+        //
     }
 }

@@ -298,7 +298,7 @@
             if (progress === 100) {
                 clearInterval(interval);
                 setTimeout(() => {
-                    window.location.href = "{{ route('welcome') }}";
+                    window.location.href = "{{ route('login') }}";
                 }, 800); // tunggu 0.8 detik biar smooth
             }
         }, 300);
