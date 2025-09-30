@@ -88,21 +88,6 @@ Route::middleware(['auth','can:isAdminOrSuperadmin'])->group(function() {
     Route::view('/rapor', 'rapor.index')->name('rapor');
     Route::view('/absen', 'absen.index')->name('absen');
 
-    // 🔹 SPP Admin
-    Route::get('/spp/admin', [SppController::class,'adminIndex'])->name('spp.admin');
-    Route::get('/spp/verify', [SppController::class,'verifyIndex'])->name('spp.verify.index');
-    Route::get('/spp/verify/{payment}', [SppController::class,'verify'])->name('spp.verify');
-    Route::post('/spp/approve/{payment}', [SppController::class,'approve'])->name('spp.approve');
-    Route::post('/spp/reject/{payment}', [SppController::class,'reject'])->name('spp.reject');
-
-    // Data Murid
-    Route::get('/spp/students', [SppController::class,'students'])->name('spp.students');
-
-    // Laporan
-    Route::get('/spp/report', [SppController::class,'report'])->name('spp.report');
-
-    // Export
-    Route::get('/spp/export/{type}', [SppController::class,'export'])->name('spp.export');
 });
 
 /*
@@ -126,11 +111,6 @@ Route::middleware(['auth','can:isMurid'])->group(function() {
     Route::get('/murid/akademik', [AkademikController::class,'index'])->name('akademik.murid.show');
     Route::view('/murid/pelanggaran', 'pelanggaran.murid')->name('pelanggaran.murid');
     Route::view('/murid/absen', 'absen.murid')->name('absen.murid');
-
-    // 🔹 SPP Murid
-    Route::get('/spp', [SppController::class,'index'])->name('spp.index');
-    Route::get('/spp/create', [SppController::class,'create'])->name('spp.create');
-    Route::post('/spp', [SppController::class,'store'])->name('spp.store');
 });
 
 require __DIR__.'/auth.php';

@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
         // ===== SUPERADMIN =====
         User::create([
             'name' => 'Superadmin',
-            'email' => 'superadmin@example.com',
+            'email' => 'superadmin@ptdarrahman.com',
             'password' => Hash::make('password123'),
             'role' => 'superadmin',
         ]);
@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
         // ===== ADMIN =====
         User::create([
             'name' => 'Admin',
-            'email' => 'admin@example.com',
+            'email' => 'admin@ptdarrahman.com',
             'password' => Hash::make('password123'),
             'role' => 'admin',
         ]);
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
         foreach($gurus as $guru){
             User::create([
                 'name' => $guru['name'],
-                'email' => strtolower(str_replace(' ','',$guru['name'])).'@example.com',
+                'email' => strtolower(str_replace(' ','',$guru['name'])).'@ptdarrahman.com',
                 'password' => Hash::make('password123'),
                 'role' => 'guru',
                 'nip' => $guru['nip']
@@ -63,20 +63,18 @@ class UserSeeder extends Seeder
             'Muhammad Nashir Amrullah',
             'Muhammad Ridho',
             'Muhammad Ardan Sundawa',
-            'Ashraf El-Hafieza',
-            'Rusmana Hudzaifah',
-            'Ali Miftah',
+            'Ashraf El-Hafieza Rusmana',
+            'Hudzaifah Ali Miftah',
             'Okte Pusta Riansyah',
             'Muhammad Hammam Riziq',
             'Farhan Fauzi',
-            'Amir Balfaz',
         ];
 
         $nisnCounter = 20001;
         foreach($muridList as $muridName){
             User::create([
                 'name' => $muridName,
-                'email' => strtolower(str_replace(' ','',$muridName)).'@example.com',
+                'email' => strtolower(str_replace(' ','',$muridName)).'@ptdarrahman.com',
                 'password' => Hash::make('password123'),
                 'role' => 'murid',
                 'nisn' => 'NISN'.$nisnCounter
