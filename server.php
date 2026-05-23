@@ -2,8 +2,16 @@
 
 $uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '');
 
-if ($uri !== '/' && file_exists($file = __DIR__ . '/public' . $uri)) {
-    $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+// Remove trailing slash (except root)
+if ($uri !== '/' && str_ends_with($uri, '/')) {
+    header('Location: ' . rtrim($uri, '/'));
+    exit;
+}
+
+$publicPath = __DIR__ . '/public' . $uri;
+
+if ($uri !== '/' && file_exists($publicPath) && !is_dir($publicPath)) {
+    $ext = strtolower(pathinfo($publicPath, PATHINFO_EXTENSION));
     $mimes = [
         'css'  => 'text/css',
         'js'   => 'application/javascript',
@@ -19,11 +27,15 @@ if ($uri !== '/' && file_exists($file = __DIR__ . '/public' . $uri)) {
         'woff2'=> 'font/woff2',
         'ttf'  => 'font/ttf',
         'otf'  => 'font/otf',
+        'pdf'  => 'application/pdf',
+        'map'  => 'application/json',
     ];
     if (isset($mimes[$ext])) {
         header('Content-Type: ' . $mimes[$ext] . '; charset=utf-8');
     }
-    echo file_get_contents($file);
+    header('X-Content-Type-Options: nosniff');
+    header('Cache-Control: public, max-age=31536000, immutable');
+    echo file_get_contents($publicPath);
     return;
 }
 

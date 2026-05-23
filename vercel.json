@@ -7,6 +7,7 @@
     { "src": "/(.*)", "dest": "/server.php" }
   ],
   "env": {
+    "APP_URL": "https://pesantren-laravel.vercel.app",
     "APP_ENV": "production",
     "APP_DEBUG": "false",
     "SESSION_DRIVER": "array",
